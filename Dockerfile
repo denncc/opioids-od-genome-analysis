@@ -29,7 +29,7 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5
     rm -rf /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/tmp/fastqc_* && \
     chmod 777 /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/FastQC/fastqc
 
-
+# Kallisto
 RUN wget https://github.com/pachterlab/kallisto/releases/download/v0.42.4/kallisto_linux-v0.42.4.tar.gz -P /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/tmp && \
     tar -xvf /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/tmp/kallisto_linux-v0.42.4.tar.gz && \
     mv kallisto_* /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/ && \
@@ -41,6 +41,7 @@ RUN pip install HTSeq
 RUN rm -rf /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/*.bz2 && \
     chmod -R +x /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/*
 
+# DESeq & QuASAR
 COPY r-bio.yaml /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/tmp
 RUN conda env create --file /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/tmp/r-bio.yaml && \
     rm -rf /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/conda/bin/R /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/opt/conda/lib/R && \
