@@ -26,3 +26,15 @@ def download_seq(path, f = "sam"):
         print(f"start downloading SRR{7949794 + i}_2")        
         os.system(command_2)
         print(f"finish downloading SRR{7949794 + i}")
+        return
+
+
+def convert_idx(in_dir, out_dir):
+    """
+    The method to convert the FASTA file into Kallisto index
+    """
+    command = f"/opt/kallisto_linux-v0.42.4/kallisto index -i {out_dir} {in_dir}"
+    print("\n\nstart building the index")
+    os.system(command)
+    print("\n\nfinish building the index\n\n")
+    return
