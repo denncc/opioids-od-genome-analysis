@@ -15,5 +15,6 @@ def download_seq(path, f = "sam"):
     """
     print(type(first_srr), first_srr)
     for i in range(50):
-        url = "www.sampleurl.com/SRR" + str(first_srr + i) + "." + f + ".gz"
+        srr = "SRR" + str(first_srr + i)
+        url = f"https://trace.ncbi.nlm.nih.gov/Traces/sra/?path=https%3A%2F%2Fsra-downloadb.be-md.ncbi.nlm.nih.gov%2Fsos1%2Fsra-pub-run-2%2F{srr}%2F{srr}.1&run={srr}&acc=CM000663.2&ref=chr1&range=&src=0&output=sam&output_to=File"
         print(url)
