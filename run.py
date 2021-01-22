@@ -10,11 +10,13 @@ with open("./config/data_config.json") as f:
 data_path = config["download"]["data_path"]
 kallisto_idx_input = config["kallisto_index"]["input"]
 kallisto_idx_output = config["kallisto_index"]["output"]
+kallisto_output = config["kallisto_align"]["output"]
 
 def main(target):
     if target == "run.py":
         # import_data.download_seq(data_path)
-        import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
+        # import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
+        import_data.align_kallisto(kallisto_idx_output, data_path, kallisto_output)
 
 
 if __name__ == "__main__":

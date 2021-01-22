@@ -38,3 +38,20 @@ def convert_idx(in_dir, out_dir):
     os.system(command)
     print("\n\nfinish building the index\n\n")
     return
+
+def align_kallisto(kallisto_idx_dir, datadir, output):
+    """
+    The pipeline that aligns the _1 and _2 gene
+    """
+    if not os.path.exists(output):
+        os.makedirs(output)
+    for i in range(50):
+        outdir = os.path.join(output, "SRR" + str(first_srr + i))
+        if not os.path.exists(outdir):
+            os.makedirs(outdir)
+        input1 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_1.fastq.gz")
+        input2 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_2.fastq.gz")
+        command = f'/opt/kallisto_linux-v0.42.4/kallisto quant -i {kallisto_idx_dir} -o {outdir} -t 8 {input1} {input2}'
+        print(command)
+        os.system(command)
+    return 
