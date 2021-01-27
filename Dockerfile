@@ -3,17 +3,17 @@ FROM ucsdets/scipy-ml-notebook:2020.2.9
 USER root
 
 # Install GATK
-# RUN pwd && \
-#     apt-get update && \
-#     apt-get install --yes default-jdk && \
-#     cd /opt && \
-#     wget -q https://github.com/broadinstitute/gatk/releases/download/4.1.4.1/gatk-4.1.4.1.zip && \
-#     unzip -q gatk-4.1.4.1.zip && \
-#     ln -s /opt/gatk-4.1.4.1/gatk /usr/bin/gatk && \
-#     rm gatk-4.1.4.1.zip && \
-#     cd /opt/gatk-4.1.4.1 && \
-#     ls -al  && \
-#     cd /home/jovyan
+RUN pwd && \
+    apt-get update && \
+    apt-get install --yes default-jdk && \
+    cd /opt && \
+    wget -q https://github.com/broadinstitute/gatk/releases/download/4.1.4.1/gatk-4.1.4.1.zip && \
+    unzip -q gatk-4.1.4.1.zip && \
+    ln -s /opt/gatk-4.1.4.1/gatk /usr/bin/gatk && \
+    rm gatk-4.1.4.1.zip && \
+    cd /opt/gatk-4.1.4.1 && \
+    ls -al  && \
+    cd /home/jovyan
 
 # install vcftools
 RUN apt-get install --yes build-essential autoconf pkg-config zlib1g-dev && \
@@ -60,14 +60,10 @@ RUN apt-get install --yes ncurses-dev libbz2-dev liblzma-dev && \
     make install
 
 # Install TrimGalore and cutadapt
-# RUN wget http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/trim_galore_v0.4.1.zip -P /tmp/ && \
-#     unzip /tmp/trim_galore_v0.4.1.zip && \
-#     rm /tmp/trim_galore_v0.4.1.zip && \
-#     mv trim_galore_zip /opt/
-
-# RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-#     python2 get-pip.py && \
-#     python2 -m pip install Cython
+RUN wget http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/trim_galore_v0.4.1.zip -P /tmp/ && \
+    unzip /tmp/trim_galore_v0.4.1.zip && \
+    rm /tmp/trim_galore_v0.4.1.zip && \
+    mv trim_galore_zip /opt/
 
 # path /opt/conda/bin/cutadapt
 RUN python3 -m pip install --upgrade cutadapt
@@ -76,14 +72,14 @@ RUN python3 -m pip install --upgrade cutadapt
 RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip -P /tmp && \
     unzip /tmp/fastqc_v0.11.5.zip && \
     mv FastQC /opt/ && \
-    chmod 755 /opt/FastQC/fastqc && \
-    rm -rf /tmp/fastqc_*
+    rm -rf /tmp/fastqc_* && \
+    chmod 777 /opt/FastQC/fastqc
 
 # STAR
-# RUN wget https://github.com/alexdobin/STAR/archive/2.5.2b.zip -P /tmp && \
-#     unzip /tmp/2.5.2b.zip && \
-#     mv STAR-* /opt/ && \
-#     rm -rf /tmp/*.zip
+RUN wget https://github.com/alexdobin/STAR/archive/2.5.2b.zip -P /tmp && \
+    unzip /tmp/2.5.2b.zip && \
+    mv STAR-* /opt/ && \
+    rm -rf /tmp/*.zip
 
 # Picard
 RUN wget http://downloads.sourceforge.net/project/picard/picard-tools/1.88/picard-tools-1.88.zip -P /tmp && \
@@ -92,10 +88,10 @@ RUN wget http://downloads.sourceforge.net/project/picard/picard-tools/1.88/picar
     rm /tmp/picard-tools-1.88.zip
 
 # SRA Tools
-# RUN wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.8/sratoolkit.2.10.8-centos_linux64.tar.gz -P /tmp && \
-#     tar xvf /tmp/sratoolkit* && \
-#     mv sratoolkit* /opt/ && \
-#     rm -rf /tmp/*.tar.gz
+RUN wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.8/sratoolkit.2.10.8-centos_linux64.tar.gz -P /tmp && \
+    tar xvf /tmp/sratoolkit* && \
+    mv sratoolkit* /opt/ && \
+    rm -rf /tmp/*.tar.gz
 
 RUN wget https://github.com/pachterlab/kallisto/releases/download/v0.42.4/kallisto_linux-v0.42.4.tar.gz -P /tmp && \
     tar -xvf /tmp/kallisto_linux-v0.42.4.tar.gz && \
@@ -114,15 +110,15 @@ RUN mkdir /opt/gtfToGenePred && \
     wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred -P /opt/gtfToGenePred
 
 # STAR-Fusion
-# RUN wget https://github.com/STAR-Fusion/STAR-Fusion/releases/download/v0.8.0/STAR-Fusion_v0.8.FULL.tar.gz -P /tmp && \
-#     tar -xvf /tmp/STAR-Fusion_v0.8.FULL.tar.gz && \
-#     mv STAR-* /opt/
+RUN wget https://github.com/STAR-Fusion/STAR-Fusion/releases/download/v0.8.0/STAR-Fusion_v0.8.FULL.tar.gz -P /tmp && \
+    tar -xvf /tmp/STAR-Fusion_v0.8.FULL.tar.gz && \
+    mv STAR-* /opt/
 
 # JSplice
-# RUN mkdir /opt/JSplice && \
-#     git clone https://github.com/yannchristinat/jsplice.git /opt/JSplice && \
-#     cd /opt/JSplice && \
-#     python3 setup.py install
+RUN mkdir /opt/JSplice && \
+    git clone https://github.com/yannchristinat/jsplice.git /opt/JSplice && \
+    cd /opt/JSplice && \
+    python3 setup.py install
 
 # RUN chmod -R 777 /opt
 # Install BWA
@@ -130,6 +126,7 @@ RUN mkdir /opt/gtfToGenePred && \
 
 # Install PLINK2
 #RUN conda install -c bioconda plink2
+
 
 RUN rm -rf /opt/*.bz2 && \
     chmod -R +x /opt/*
