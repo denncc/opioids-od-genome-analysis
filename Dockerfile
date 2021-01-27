@@ -65,9 +65,9 @@ RUN apt-get install --yes ncurses-dev libbz2-dev liblzma-dev && \
 #     rm /tmp/trim_galore_v0.4.1.zip && \
 #     mv trim_galore_zip /opt/
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python2 get-pip.py && \
-    python2 -m pip install Cython
+# RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+#     python2 get-pip.py && \
+#     python2 -m pip install Cython
 
 # path /opt/conda/bin/cutadapt
 RUN python3 -m pip install --upgrade cutadapt
