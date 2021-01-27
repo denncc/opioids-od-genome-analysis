@@ -131,4 +131,13 @@ RUN mkdir /opt/JSplice && \
 # Install PLINK2
 #RUN conda install -c bioconda plink2
 
+RUN rm -rf /opt/*.bz2 && \
+    chmod -R +x /opt/*
+
+COPY r-bio.yaml /tmp
+RUN conda env create --file /tmp/r-bio.yaml && \
+    rm -rf /opt/conda/bin/R /opt/conda/lib/R && \
+    ln -s /opt/conda/envs/r-bio/bin/R /opt/conda/bin/R && \
+    ln -s /opt/conda/envs/r-bio/lib/R /opt/conda/lib/R
+
 USER $NB_UID
