@@ -51,7 +51,14 @@ def align_kallisto(kallisto_idx_dir, datadir, output):
             os.makedirs(outdir)
         input1 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_1.fastq.gz")
         input2 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_2.fastq.gz")
-        command = f'/opt/kallisto_linux-v0.42.4/kallisto quant -i {kallisto_idx_dir} -o {outdir} -t 8 {input1} {input2}'
+        command = f'/opt/kallisto_linux-v0.42.4/kallisto quant -i {kallisto_idx_dir} -o {outdir}/out.bam --pseudobam {input1} {input2}'
         print(command)
-        os.system(command)
+        # os.system(command)
     return 
+
+def remove_duplicates():
+    """
+    Remove the PCR duplicates using Samtools rmdup
+    """
+    for i in range(50):
+        sample_dir = os.path.join()

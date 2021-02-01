@@ -10,9 +10,16 @@ dependencies:
 - r-essentials
 - python=3.8
 - pip
+- r-vegan
+- r-nhanes
+- bowtie2
+- plink
 - homer
+- bedtools
 - samtools
 - bcftools
+- subread
 - htseq
+- bwa
+- bwa-mem2
 - r-sleuth
-- WGCNA

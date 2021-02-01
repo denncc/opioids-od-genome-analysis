@@ -60,10 +60,10 @@ RUN apt-get install --yes ncurses-dev libbz2-dev liblzma-dev && \
     make install
 
 # Install TrimGalore and cutadapt
-RUN wget http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/trim_galore_v0.4.1.zip -P /tmp/ && \
-    unzip /tmp/trim_galore_v0.4.1.zip && \
-    rm /tmp/trim_galore_v0.4.1.zip && \
-    mv trim_galore_zip /opt/
+RUN wget https://github.com/FelixKrueger/TrimGalore/archive/0.6.6.zip -P /tmp/ && \
+    unzip /tmp/0.6.6.zip && \
+    rm /tmp/0.6.6.zip && \
+    mv TrimGalore-0.6.6 /opt/
 
 # path /opt/conda/bin/cutadapt
 RUN python3 -m pip install --upgrade cutadapt
@@ -93,10 +93,10 @@ RUN wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.8/sratoolkit.2.10.8-cen
     mv sratoolkit* /opt/ && \
     rm -rf /tmp/*.tar.gz
 
-RUN wget https://github.com/pachterlab/kallisto/releases/download/v0.44.0/kallisto_linux-v0.44.0.tar.gz -P /tmp && \
-    tar -xvf /tmp/kallisto_linux-v0.44.0.tar.gz && \
+RUN wget https://github.com/pachterlab/kallisto/releases/download/v0.42.4/kallisto_linux-v0.42.4.tar.gz -P /tmp && \
+    tar -xvf /tmp/kallisto_linux-v0.42.4.tar.gz && \
     mv kallisto_* /opt/ && \
-    rm /tmp/kallisto_linux-v0.44.0.tar.gz
+    rm /tmp/kallisto_linux-v0.42.4.tar.gz
 
 # HTSeq
 RUN pip install HTSeq
@@ -128,13 +128,13 @@ RUN mkdir /opt/JSplice && \
 #RUN conda install -c bioconda plink2
 
 
-# RUN rm -rf /opt/*.bz2 && \
-#     chmod -R +x /opt/*
+RUN rm -rf /opt/*.bz2 && \
+    chmod -R +x /opt/*
 
-# COPY r-bio.yaml /tmp
-# RUN conda env create --file /tmp/r-bio.yaml && \
-#     rm -rf /opt/conda/bin/R /opt/conda/lib/R && \
-#     ln -s /opt/conda/envs/r-bio/bin/R /opt/conda/bin/R && \
-#     ln -s /opt/conda/envs/r-bio/lib/R /opt/conda/lib/R
+COPY r-bio.yaml /tmp
+RUN conda env create --file /tmp/r-bio.yaml && \
+    rm -rf /opt/conda/bin/R /opt/conda/lib/R && \
+    ln -s /opt/conda/envs/r-bio/bin/R /opt/conda/bin/R && \
+    ln -s /opt/conda/envs/r-bio/lib/R /opt/conda/lib/R
 
 USER $NB_UID

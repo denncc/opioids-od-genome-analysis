@@ -21,8 +21,8 @@ def main(target):
     if target == "run.py":
         # import_data.download_seq(data_path)
         # import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
-        # import_data.align_kallisto(kallisto_idx_output, data_path, kallisto_output)
-        build_features.make_cts(kallisto_output, cts_dir)
+        import_data.align_kallisto(kallisto_idx_output, data_path, kallisto_output)
+        # build_features.make_cts(kallisto_output, cts_dir)
 
 
 
