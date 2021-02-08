@@ -10,7 +10,7 @@ This is a data science project curated by Cathleen Peña, Zhaoyi Guo, and Dennis
 ### Pull the Docker Image
 To test on the project, in DSMLP, simply pull the image we've generated exclusively for this project by inputting:
 
-    launch-180.sh -i dencc/opioids-od:dw -G B04_Genetics
+    $ launch-180.sh -i dencc/opioids-od:dw -G B04_Genetics
     
 ### Clone the Repository
 In the directory you want to run the project in, run
@@ -24,7 +24,7 @@ Then you will be able to run the project the project after cloning
 ### Test the project
 To test on the project, simply input
 
-    python run.py test
+    $ python run.py test
 
 You will be able to see the testing procedure to run
 
