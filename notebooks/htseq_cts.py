@@ -5,7 +5,16 @@ import pandas as pd
 from matplotlib import pyplot 
 import os
 
+def sort_bam():
+    for i in file_name[21:34]:
+        name = i[:-3]+"csv"
+        c1 = "/opt/samtools-1.10/samtools sort -n -O BAM /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/processed/duplicates_removed/" + i + " -o /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/processed/sorted/" + i     
+        os.system(c1)
+        print(name + " finished")
+    
+
 def cts():
+    # read the GFF reader
     gtf_file = HTSeq.GFF_Reader(
         "/teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/external/gencode.v24.annotation.gtf", end_included=True)   
     exons = HTSeq.GenomicArrayOfSets( "auto", stranded=False )
@@ -13,19 +22,19 @@ def cts():
         if feature.type == "exon":
             exons[ feature.iv ] += feature.name
     iv = HTSeq.GenomicInterval("III", 23850, 23950, ".")
+    # get the counts as the row names
     counts = {}
     for feature in gtf_file:
         if feature.type == "exon":
             counts[feature.name] = 0
-            
     df = pd.DataFrame(counts.keys())
     df.columns = [['target_id']]
-    file_name = os.popen('ls /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/external/bam/').read()
+    file_name = os.popen('ls /teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/processed/duplicates_removed/').read()
     file_name = file_name.split('\n')
     for i in file_name:
-        print(i)
         counts_i = counts
-        path = "/teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/external/bam/" + i
+        df_i = df
+        path = "/teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/processed/duplicates_removed/" + i
         bam_file = HTSeq.BAM_Reader(path)
         for alnmt in bam_file:
             if alnmt.aligned:
@@ -37,8 +46,10 @@ def cts():
                         iset.intersection_update(step_set)
                 if len(iset) == 1:
                     counts_i[list(iset)[0]] += 1
-        df[i] = counts_i.values()
-    df.to_csv('htseq_cts.csv')        
+        df_i[i] = counts_i.values()
+        name = i[:-3]+"csv"
+        df_i.to_csv('/teams/DSC180A_FA20_A00/b04genetics/group_4/opioids-od-genome-analysis/data/processed/htseq/' + name)
+        print("finished ", i)
           
                 
                 

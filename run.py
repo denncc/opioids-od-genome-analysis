@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+import data_preprocessing
 
 # import the modules under src
 import src.data.import_data as import_data
@@ -27,12 +28,19 @@ def main(target):
         # import_data.download_seq(data_path)
         # import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
         import_data.align_kallisto(kallisto_idx_output, data_path, kallisto_output)
+<<<<<<< HEAD
         # build_features.make_cts(kallisto_output, cts_dir)
     if target == "test":
         import_data.test_download_seq(test_data_path)
         import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
         import_data.test_align_kallisto(kallisto_idx_output, test_data_path, test_kallisto_output)
         build_features.test_make_cts(test_kallisto_output, cts_dir)
+=======
+    if 'test' in targets: 
+        data_preprocessing.get_subset(input_file, output_file, 100, test_data_path)
+        data_preprocessing.get_fastqc(output_file, test_data_path)
+        data_preprocessing.get_kallisto(output_file, test_data_path, kallisto_test_path)
+>>>>>>> lg
 
 
 if __name__ == "__main__":
