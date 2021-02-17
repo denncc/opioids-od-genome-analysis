@@ -27,7 +27,7 @@ def main(target):
         # import_data.download_seq(data_path)
         # import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)
         import_data.align_kallisto(kallisto_idx_output, data_path, kallisto_output)
-        # build_features.make_cts(kallisto_output, cts_dir)
+        build_features.make_cts(kallisto_output, cts_dir)
     if target == "test":
         import_data.test_download_seq(test_data_path)
         import_data.convert_idx(kallisto_idx_input, kallisto_idx_output)

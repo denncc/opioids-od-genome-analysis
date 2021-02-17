@@ -47,15 +47,15 @@ def align_kallisto(kallisto_idx_dir, datadir, output):
     """
     if not os.path.exists(output):
         os.makedirs(output)
-    for i in range(50):
+    for i in range(49, 50, 1):
         outdir = os.path.join(output, "SRR" + str(first_srr + i))
         if not os.path.exists(outdir):
             os.makedirs(outdir)
         input1 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_1.fastq.gz")
         input2 = os.path.join(datadir, "SRR" + str(first_srr + i) + "_2.fastq.gz")
-        command = f'/opt/kallisto_linux-v0.42.4/kallisto quant -i {kallisto_idx_dir} -o {outdir} --pseudobam {input1} {input2}'
+        command = f'/opt/kallisto_linux-v0.44.0/kallisto quant -i {kallisto_idx_dir} -o {outdir} --pseudobam {input1} {input2}'
         print(command)
-        # os.system(command)
+        os.system(command)
     return 
 
 def remove_duplicates():
@@ -106,3 +106,10 @@ def test_align_kallisto(kallisto_idx_dir, datadir, output):
         print(command)
         os.system(command)
     return 
+
+
+def cutadapt(in_dir, out_dir):
+    """
+    The function to run cutadapt in the pipeline
+    """
+    os.system(f"cutadapt -a AACCGGTT -o {out_dir} {in_dir}")
