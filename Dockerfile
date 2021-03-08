@@ -127,6 +127,10 @@ RUN mkdir /opt/JSplice && \
 # Install PLINK2
 #RUN conda install -c bioconda plink2
 
+# Get R Packages
+RUN R -e "install.packages('DESeq2')"
+RUN R -e "install.packages('WGCNA')"
+
 
 RUN rm -rf /opt/*.bz2 && \
     chmod -R +x /opt/*
