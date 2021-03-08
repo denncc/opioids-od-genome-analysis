@@ -34,107 +34,145 @@ You will be able to see the testing procedure to run
 
 ## Project Organization
 ```
-📦opioids-od-genome-analysis  
- ┣ 📂config  
- ┃ ┣ 📜data_config.json  
- ┃ ┣ 📜feature_config.json  
- ┃ ┣ 📜submission.json  
- ┃ ┗ 📜test_config.json  
- ┣ 📂data  
- ┃ ┣ 📂external  
- ┃ ┃ ┗ 📜.gitkeep  
- ┃ ┣ 📂interim  
- ┃ ┃ ┗ 📜.gitkeep  
- ┃ ┣ 📂processed  
- ┃ ┃ ┗ 📜.gitkeep  
- ┃ ┣ 📂raw  
- ┃ ┃ ┗ 📜.gitkeep  
- ┃ ┗ 📂test  
- ┃ ┃ ┣ 📂SRR7949794  
- ┃ ┃ ┃ ┣ 📂out.bam  
- ┃ ┃ ┃ ┃ ┗ 📜run_info.json  
- ┃ ┃ ┃ ┣ 📜abundance.h5  
- ┃ ┃ ┃ ┣ 📜abundance.tsv  
- ┃ ┃ ┃ ┣ 📜pseudoalignments.bam  
- ┃ ┃ ┃ ┗ 📜pseudoaln.bin  
- ┃ ┃ ┣ 📜SRR7949794_1.fastq.gz  
- ┃ ┃ ┣ 📜SRR7949794_1.fastq.gz.1  
- ┃ ┃ ┣ 📜SRR7949794_2.fastq.gz  
- ┃ ┃ ┗ 📜SRR7949794_2.fastq.gz.1  
- ┣ 📂docs  
- ┃ ┣ 📜Makefile  
- ┃ ┣ 📜commands.rst  
- ┃ ┣ 📜conf.py  
- ┃ ┣ 📜getting-started.rst  
- ┃ ┣ 📜index.rst  
- ┃ ┗ 📜make.bat  
- ┣ 📂models  
- ┃ ┗ 📜.gitkeep  
- ┣ 📂notebooks  
- ┃ ┣ 📜.gitkeep  
- ┃ ┣ 📜EDA_python.ipynb  
- ┃ ┣ 📜EDA_r.ipynb  
- ┃ ┣ 📜HTSeq.ipynb  
- ┃ ┣ 📜SRA_eda.ipynb  
- ┃ ┣ 📜SRR7949794_cts_htseq.csv  
- ┃ ┣ 📜counts.csv  
- ┃ ┣ 📜cts.csv  
- ┃ ┣ 📜htseq_cts.csv  
- ┃ ┗ 📜htseq_cts.py  
- ┣ 📂references  
- ┃ ┗ 📜.gitkeep  
- ┣ 📂reports  
- ┃ ┣ 📂figures  
- ┃ ┃ ┗ 📜.gitkeep  
- ┃ ┗ 📜.gitkeep  
- ┣ 📂src  
- ┃ ┣ 📂__pycache__  
- ┃ ┃ ┣ 📜__init__.cpython-36.pyc  
- ┃ ┃ ┗ 📜__init__.cpython-37.pyc  
- ┃ ┣ 📂data  
- ┃ ┃ ┣ 📂__pycache__  
- ┃ ┃ ┃ ┣ 📜__init__.cpython-36.pyc  
- ┃ ┃ ┃ ┣ 📜__init__.cpython-37.pyc  
- ┃ ┃ ┃ ┣ 📜import_data.cpython-36.pyc  
- ┃ ┃ ┃ ┗ 📜import_data.cpython-37.pyc  
- ┃ ┃ ┣ 📜.gitkeep  
- ┃ ┃ ┣ 📜__init__.py  
- ┃ ┃ ┣ 📜__init__.pyc  
- ┃ ┃ ┣ 📜import_data.py  
- ┃ ┃ ┗ 📜make_dataset.py  
- ┃ ┣ 📂features  
- ┃ ┃ ┣ 📂__pycache__  
- ┃ ┃ ┃ ┣ 📜__init__.cpython-36.pyc  
- ┃ ┃ ┃ ┣ 📜__init__.cpython-37.pyc  
- ┃ ┃ ┃ ┣ 📜build_features.cpython-36.pyc  
- ┃ ┃ ┃ ┗ 📜build_features.cpython-37.pyc  
- ┃ ┃ ┣ 📂r_scripts  
- ┃ ┃ ┃ ┗ 📜main.R  
- ┃ ┃ ┣ 📜.gitkeep  
- ┃ ┃ ┣ 📜__init__.py  
- ┃ ┃ ┗ 📜build_features.py  
- ┃ ┣ 📂models  
- ┃ ┃ ┣ 📜.gitkeep  
- ┃ ┃ ┣ 📜__init__.py  
- ┃ ┃ ┣ 📜predict_model.py  
- ┃ ┃ ┗ 📜train_model.py  
- ┃ ┣ 📂visualization  
- ┃ ┃ ┣ 📜.gitkeep  
- ┃ ┃ ┣ 📜__init__.py  
- ┃ ┃ ┗ 📜visualize.py  
- ┃ ┣ 📜__init__.py  
- ┃ ┗ 📜__init__.pyc  
- ┣ 📜.gitignore  
- ┣ 📜Dockerfile  
- ┣ 📜LICENSE  
- ┣ 📜Makefile  
- ┣ 📜README.md  
- ┣ 📜command-line-htseq.txt  
- ┣ 📜htseq_cts.py  
- ┣ 📜r-bio.yaml  
- ┣ 📜requirements.txt  
- ┣ 📜run.py  
- ┣ 📜setup.py  
- ┣ 📜test_environment.py  
+📦opioids-od-genome-analysis
+ ┣ 📂config
+ ┃ ┣ 📜data_config.json
+ ┃ ┣ 📜feature_config.json
+ ┃ ┣ 📜model_config.json
+ ┃ ┣ 📜submission.json
+ ┃ ┗ 📜test_config.json
+ ┣ 📂data
+ ┃ ┣ 📂external
+ ┃ ┃ ┣ 📂bam
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜GRCh38_latest_rna.fna
+ ┃ ┃ ┣ 📜Log.out
+ ┃ ┃ ┣ 📜SRA_case_table.csv
+ ┃ ┃ ┣ 📜chrLength.txt
+ ┃ ┃ ┣ 📜chrName.txt
+ ┃ ┃ ┣ 📜chrNameLength.txt
+ ┃ ┃ ┣ 📜chrStart.txt
+ ┃ ┃ ┣ 📜gencode.v24.annotation.gff3
+ ┃ ┃ ┣ 📜gencode.v24.annotation.gtf
+ ┃ ┃ ┣ 📜gencode.v24.annotation_mrna.gff
+ ┃ ┃ ┗ 📜genomeParameters.txt
+ ┃ ┣ 📂interim
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜cts.tsv
+ ┃ ┃ ┗ 📜dds_res_before_filter.csv
+ ┃ ┣ 📂processed
+ ┃ ┃ ┣ 📂duplicates_removed
+ ┃ ┃ ┣ 📂htseq
+ ┃ ┃ ┣ 📂kallisto
+ ┃ ┃ ┣ 📂merged
+ ┃ ┃ ┣ 📂sorted
+ ┃ ┃ ┣ 📂temp
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜htseq_cts.csv
+ ┃ ┃ ┣ 📜htseq_cts_1.csv
+ ┃ ┃ ┣ 📜htseq_cts_gene.csv
+ ┃ ┃ ┣ 📜htseq_cts_gene_filtered.csv
+ ┃ ┃ ┣ 📜kallisto_transcripts.idx
+ ┃ ┃ ┗ 📜test_gene_counts.csv
+ ┃ ┣ 📂raw
+ ┃ ┣ 📂test
+ ┃ ┃ ┣ 📂SRR7949794
+ ┃ ┃ ┃ ┣ 📜abundance.h5
+ ┃ ┃ ┃ ┣ 📜abundance.tsv
+ ┃ ┃ ┃ ┣ 📜pseudoalignments.bam
+ ┃ ┃ ┃ ┗ 📜run_info.json
+ ┃ ┃ ┣ 📜SRR7949794_1.fastq.gz
+ ┃ ┃ ┗ 📜SRR7949794_2.fastq.gz
+ ┃ ┗ 📜SRA_case_table.csv
+ ┣ 📂docs
+ ┃ ┣ 📜Makefile
+ ┃ ┣ 📜commands.rst
+ ┃ ┣ 📜conf.py
+ ┃ ┣ 📜getting-started.rst
+ ┃ ┣ 📜index.rst
+ ┃ ┗ 📜make.bat
+ ┣ 📂models
+ ┃ ┗ 📜.gitkeep
+ ┣ 📂notebooks
+ ┃ ┣ 📜.gitkeep
+ ┃ ┣ 📜EDA_python.ipynb
+ ┃ ┣ 📜EDA_r.ipynb
+ ┃ ┣ 📜HTSeq.ipynb
+ ┃ ┣ 📜SRA_eda.ipynb
+ ┃ ┗ 📜htseq_cts.py
+ ┣ 📂references
+ ┃ ┗ 📜.gitkeep
+ ┣ 📂reports
+ ┃ ┣ 📂figures
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜Dist_of_Age.pdf
+ ┃ ┃ ┣ 📜Scatterplot_Matrix_All.pdf
+ ┃ ┃ ┣ 📜Scatterplot_Matrix_Users.pdf
+ ┃ ┃ ┣ 📜cocaine_use_diff_means.pdf
+ ┃ ┃ ┣ 📜cocaine_use_means.pdf
+ ┃ ┃ ┣ 📜diff_group_means.pdf
+ ┃ ┃ ┣ 📜drug_use_pie.pdf
+ ┃ ┃ ┣ 📜group_means.pdf
+ ┃ ┃ ┗ 📜race_pie.pdf
+ ┃ ┗ 📜.gitkeep
+ ┣ 📂src
+ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┣ 📜__init__.cpython-36.pyc
+ ┃ ┃ ┗ 📜__init__.cpython-37.pyc
+ ┃ ┣ 📂data
+ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┃ ┣ 📜__init__.cpython-36.pyc
+ ┃ ┃ ┃ ┣ 📜__init__.cpython-37.pyc
+ ┃ ┃ ┃ ┣ 📜import_data.cpython-36.pyc
+ ┃ ┃ ┃ ┗ 📜import_data.cpython-37.pyc
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┣ 📜__init__.pyc
+ ┃ ┃ ┣ 📜import_data.py
+ ┃ ┃ ┗ 📜make_dataset.py
+ ┃ ┣ 📂features
+ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┃ ┣ 📜__init__.cpython-36.pyc
+ ┃ ┃ ┃ ┣ 📜__init__.cpython-37.pyc
+ ┃ ┃ ┃ ┣ 📜build_features.cpython-36.pyc
+ ┃ ┃ ┃ ┗ 📜build_features.cpython-37.pyc
+ ┃ ┃ ┣ 📂r_scripts
+ ┃ ┃ ┃ ┗ 📜main.R
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┗ 📜build_features.py
+ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┃ ┣ 📜__init__.cpython-37.pyc
+ ┃ ┃ ┃ ┣ 📜build_model.cpython-37.pyc
+ ┃ ┃ ┃ ┗ 📜htseq_cts.cpython-37.pyc
+ ┃ ┃ ┣ 📂r_scripts
+ ┃ ┃ ┃ ┣ 📜deseq2.R
+ ┃ ┃ ┃ ┣ 📜visualization.R
+ ┃ ┃ ┃ ┗ 📜wgcna.R
+ ┃ ┃ ┣ 📂sh_scripts
+ ┃ ┃ ┃ ┗ 📜samtools.sh
+ ┃ ┃ ┣ 📜.Rhistory
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┣ 📜build_model.py
+ ┃ ┃ ┗ 📜htseq_cts.py
+ ┃ ┣ 📂visualization
+ ┃ ┃ ┣ 📜.gitkeep
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┗ 📜visualize.py
+ ┃ ┣ 📜__init__.py
+ ┃ ┗ 📜__init__.pyc
+ ┣ 📜.gitignore
+ ┣ 📜Dockerfile
+ ┣ 📜LICENSE
+ ┣ 📜Makefile
+ ┣ 📜README.md
+ ┣ 📜command-line-htseq.txt
+ ┣ 📜r-bio.yaml
+ ┣ 📜requirements.txt
+ ┣ 📜run.py
+ ┣ 📜setup.py
+ ┣ 📜test_environment.py
  ┗ 📜tox.ini
- ```
+```
